@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userConfig" class="org.example.bean.UserConfig">
+        <property name="name" value="Spring Boot"/>
+        <property name="className" value="exampleClass"/>
+    </bean>
+
+    <bean id="userService" class="org.example.services.UserService">
+        <constructor-arg ref="userConfig"/>
+    </bean>
+
+    <bean id="userOrder" class="org.example.services.OrderService" factory-method="createOrder">
+        <constructor-arg ref="userService"/>
+        <constructor-arg ref="userConfig"/>
+    </bean>
+
+</beans>
